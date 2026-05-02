@@ -1,0 +1,65 @@
+table 'City - State Lookup Table'
+	isHidden
+	lineageTag: d72706c4-07bd-400b-b71c-132232213f1f
+
+	column 'Store City'
+		dataType: string
+		isHidden
+		lineageTag: 1be70883-dd58-41f9-a26f-612fc4a17842
+		summarizeBy: none
+		sourceColumn: Store City
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store State'
+		dataType: string
+		isHidden
+		lineageTag: c491f493-1233-4880-b21f-1d202e2354fb
+		summarizeBy: none
+		sourceColumn: Store State
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'City - State Lookup Table' = m
+		mode: import
+		source = ```
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ryu10\OneDrive\Udemy\Power BI\Independent Projects for Portfolio\Datasets\AI generated retail_dataset_500k\dim_stores.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				
+				    #"Change Type" = Table.TransformColumnTypes(#"Promoted Headers",{
+				            {"store_id", type text}, 
+				            {"store_name", type text}, 
+				            {"region", type text}, 
+				            {"city", type text}, 
+				            {"state", type text}, 
+				            {"store_type", type text}, 
+				            {"opening_date", type date}
+				        }),
+				
+				    #"Rename Columns" = Table.RenameColumns(#"Change Type",{
+				            {"store_id", "Store ID"}, 
+				            {"store_name", "Store Name"}, 
+				            {"region", "Store Region"}, 
+				            {"city", "Store City"}, 
+				            {"state", "Store State"}, 
+				            {"store_type", "Store Type"}, 
+				            {"opening_date", "Opening Date"}
+				        }),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Rename Columns",{"Store City", "Store State"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns", {"Store City"})
+				in
+				    #"Removed Duplicates"
+				```
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

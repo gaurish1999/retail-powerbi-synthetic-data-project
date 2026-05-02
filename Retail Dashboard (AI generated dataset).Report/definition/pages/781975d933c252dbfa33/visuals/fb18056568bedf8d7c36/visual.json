@@ -1,0 +1,269 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "fb18056568bedf8d7c36",
+  "position": {
+    "x": 65.591559909570464,
+    "y": 124.43104747550868,
+    "z": 2000,
+    "height": 586.46571213263007,
+    "width": 1214.4084400904296,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "keyDriversVisual",
+    "query": {
+      "queryState": {
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Product"
+                    }
+                  },
+                  "Property": "Brand"
+                }
+              },
+              "queryRef": "dim_products.Brand",
+              "nativeQueryRef": "Brand"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Product"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "dim_products.Category",
+              "nativeQueryRef": "Category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Product"
+                    }
+                  },
+                  "Property": "Sub-Category"
+                }
+              },
+              "queryRef": "dim_products.Sub-Category",
+              "nativeQueryRef": "Sub-Category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Product"
+                    }
+                  },
+                  "Property": "Product Name"
+                }
+              },
+              "queryRef": "dim_products.Product Name",
+              "nativeQueryRef": "Product Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Product"
+                    }
+                  },
+                  "Property": "Color"
+                }
+              },
+              "queryRef": "dim_products.Color",
+              "nativeQueryRef": "Color"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Store"
+                    }
+                  },
+                  "Property": "Store Region"
+                }
+              },
+              "queryRef": "dim_stores.Store Region",
+              "nativeQueryRef": "Store Region"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Store"
+                    }
+                  },
+                  "Property": "Store Type"
+                }
+              },
+              "queryRef": "dim_stores.Store Type",
+              "nativeQueryRef": "Store Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Sales"
+                    }
+                  },
+                  "Property": "Returned?"
+                }
+              },
+              "queryRef": "sales_fact.Returned?",
+              "nativeQueryRef": "Returned?"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Date"
+                    }
+                  },
+                  "Property": "Is Weekend?"
+                }
+              },
+              "queryRef": "dim_date.Is Weekend?",
+              "nativeQueryRef": "Is Weekend?"
+            }
+          ]
+        },
+        "Target": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_DAX"
+                    }
+                  },
+                  "Property": "Total Sales"
+                }
+              },
+              "queryRef": "_DAX.Total Sales",
+              "nativeQueryRef": "Total Sales"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_DAX"
+                  }
+                },
+                "Property": "Total Sales"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "keyDrivers": [
+        {
+          "properties": {
+            "selectedAnalysis": {
+              "expr": {
+                "Literal": {
+                  "Value": "'keyInfluencers'"
+                }
+              }
+            },
+            "numericTargetSelectedKind": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "allowKeyDriversCounting": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "selectedSort": {
+              "expr": {
+                "Literal": {
+                  "Value": "'impact'"
+                }
+              }
+            },
+            "countType": {
+              "expr": {
+                "Literal": {
+                  "Value": "'relative'"
+                }
+              }
+            },
+            "allowProfiles": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "targetValue": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''''''_DAX''''[Total Sales]'''"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": -0.25
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

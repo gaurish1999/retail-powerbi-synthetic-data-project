@@ -1,0 +1,192 @@
+table Dim_Product
+	lineageTag: 190d5a4a-71c5-4afd-9040-2a4e4f97d480
+
+	column 'Product ID'
+		dataType: string
+		isHidden
+		lineageTag: 830b6e81-ee0c-480e-8449-d8292605a599
+		summarizeBy: none
+		sourceColumn: Product ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKU
+		dataType: string
+		lineageTag: dde85057-3d4f-44d3-8bbf-2770a759904d
+		summarizeBy: none
+		sourceColumn: SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name'
+		dataType: string
+		lineageTag: 0347bb3b-6275-454b-b5fe-66a1ab620842
+		summarizeBy: none
+		sourceColumn: Product Name
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Dim_Product","TableItemName":"Product Name (clusters)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column Category
+		dataType: string
+		lineageTag: fef3429d-966e-40e0-a5bd-e1131b6277eb
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub-Category
+		dataType: string
+		lineageTag: f50061b3-769b-4e52-8d8b-4fd6d549fa5f
+		summarizeBy: none
+		sourceColumn: Sub-Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: e99844a5-f149-47cd-bcd2-291727a62ff4
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unit Selling Price'
+		dataType: decimal
+		isHidden
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: e7fff554-7e9a-4f44-8bb1-20dc280e8f16
+		summarizeBy: none
+		sourceColumn: Unit Selling Price
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Unit Cost Price'
+		dataType: decimal
+		isHidden
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 0e256baa-2603-468e-913b-2097ade85bca
+		summarizeBy: none
+		sourceColumn: Unit Cost Price
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Size
+		dataType: string
+		lineageTag: abb47e92-7d46-4af1-ba21-4ff9e054f8cd
+		summarizeBy: none
+		sourceColumn: Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: 0348286d-8d1f-431d-93d3-d854ebf84c12
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Clusters for Product Name
+	column 'Product Name (clusters)' = ```
+			VAR __ClusterValue = 
+				LOOKUPVALUE(
+					'ClusterMappingTable'[ClusterId],
+					'ClusterMappingTable'[Product_Name],
+					'Dim_Product'[Product Name]
+				)
+			
+			RETURN
+				SWITCH(
+					__ClusterValue,
+					1,
+					"Highly Eff.",
+					2,
+					"Avg Eff.",
+					3,
+					"Poor Eff.",
+					BLANK(),
+					BLANK(),
+					CONCATENATE("Cluster", __ClusterValue)
+				)
+			```
+		lineageTag: f52c0dd0-28b6-4ae4-b08e-d2806cd8ff1e
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Dim_Product"
+				          }
+				        },
+				        "Property": "Product Name"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"d","Entity":"Dim_Product"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Product Name"}}],"PartitionTable":{"Definition":{"TableDefinition":{"Version":2,"From":[{"Name":"d","Entity":"Dim_Product"},{"Name":"s","Entity":"Fact_Sales"},{"Name":"_","Entity":"_DAX"},{"Name":"d1","Entity":"Dim_Date"}],"Where":[{"Condition":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d1"}},"Property":"Year"}}],"Values":[[{"Literal":{"Value":"'2022'"}}],[{"Literal":{"Value":"'2023'"}}],[{"Literal":{"Value":"'2024'"}}]]}}}],"OrderBy":[],"Select":[{"Column":{"Expression":{"TransformTableRef":{"Source":"output0"}},"Property":"dim_products.Product Name"},"Name":"dim_products.Product Name"},{"Column":{"Expression":{"TransformTableRef":{"Source":"output0"}},"Property":"clusterId"},"Name":"clusterId"}],"GroupBy":[],"Transform":[{"Name":"KMeansClustering","Algorithm":"KMeansClustering","Input":{"Parameters":[{"Literal":{"Value":"3L"},"Name":"NumberOfClusters"}],"Table":{"Name":"input0","Columns":[{"Role":"Item","Expression":{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Product Name"},"Name":"dim_products.Product Name"}},{"Role":"Attribute","Expression":{"Aggregation":{"Function":1,"Expression":{"Column":{"Expression":{"SourceRef":{"Source":"s"}},"Property":"Discount %"}}},"Name":"Sum(sales_fact.Discount %)"}},{"Role":"Attribute","Expression":{"Measure":{"Expression":{"SourceRef":{"Source":"_"}},"Property":"% of Total Profit"},"Name":"_DAX.% of Total Profit"}}]}},"Output":{"Table":{"Name":"output0","Columns":[{"Expression":{"Column":{"Expression":{"TransformTableRef":{"Source":"input0"}},"Property":"dim_products.Product Name"},"Name":"dim_products.Product Name"}},{"Role":"Series","Expression":{"TransformOutputRoleRef":{"Role":"ClusterId"},"Name":"clusterId"}}]}}}]},"ItemIdColumns":["dim_products.Product Name"],"PartitionIdColumn":"clusterId","Partitions":[{"DisplayName":"Highly Eff.","PartitionIds":[{"Literal":{"Value":"1L"}}]},{"DisplayName":"Avg Eff.","PartitionIds":[{"Literal":{"Value":"2L"}}]},{"DisplayName":"Poor Eff.","PartitionIds":[{"Literal":{"Value":"3L"}}]},{"PartitionIds":[{"Literal":{"Value":"null"}}]}],"DefaultPartitionPrefix":"Cluster"},"Result":{"TableName":"ClusterMappingTable","PartitionIdColumn":"ClusterId","ItemIdMappings":[[{"PartitionTableColumn":{"Column":{"Expression":{"SourceRef":{"Entity":"ClusterMappingTable"}},"Property":"Product_Name"}},"SourceTableColumn":{"Column":{"Expression":{"SourceRef":{"Entity":"Dim_Product"}},"Property":"Product Name"}}}]]}}}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Product = m
+		mode: import
+		source = ```
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ryu10\OneDrive\Udemy\Power BI\Independent Projects for Portfolio\Datasets\AI generated retail_dataset_500k\dim_products.csv"),[Delimiter=",", Columns=10, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				
+				    // Changing data types to appropriate types
+				    #"Changing Datatype" = Table.TransformColumnTypes(#"Promoted Headers",{
+				            {"product_id", type text}, 
+				            {"sku", type text}, 
+				            {"product_name", type text}, 
+				            {"category", type text}, 
+				            {"subcategory", type text}, 
+				            {"brand", type text}, 
+				            {"unit_price", Currency.Type}, 
+				            {"unit_cost", Currency.Type}, 
+				            {"size", type text}, 
+				            {"color", type text}
+				        }),
+				
+				    // Renaming cols to required names
+				    #"Rename Columns" = Table.RenameColumns(#"Changing Datatype",{
+				            {"product_id", "Product ID"}, 
+				            {"sku", "SKU"}, 
+				            {"product_name", "Product Name"}, 
+				            {"category", "Category"}, 
+				            {"subcategory", "Sub-Category"}, 
+				            {"brand", "Brand"}, 
+				            {"unit_price", "Unit Selling Price"}, 
+				            {"unit_cost", "Unit Cost Price"}, 
+				            {"size", "Size"},
+				            {"color", "Color"}
+				        })
+				in
+				    #"Rename Columns"
+				```
+
+	changedProperty = Name
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

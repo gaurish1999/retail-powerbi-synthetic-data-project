@@ -1,0 +1,280 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "93e2d40705f2711ef627",
+  "position": {
+    "x": 60.68563092633115,
+    "y": 126.97301239970825,
+    "z": 2000,
+    "height": 586.31655725747635,
+    "width": 366.91466083150988,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "esriVisual",
+    "query": {
+      "queryState": {
+        "Location": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Store"
+                    }
+                  },
+                  "Property": "Store Region"
+                }
+              },
+              "queryRef": "dim_stores.Store Region",
+              "nativeQueryRef": "Store Region"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_DAX"
+                    }
+                  },
+                  "Property": "Total Sales"
+                }
+              },
+              "queryRef": "_DAX.Total Sales",
+              "nativeQueryRef": "Total Sales"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_DAX"
+                    }
+                  },
+                  "Property": "Total Sales"
+                }
+              },
+              "queryRef": "_DAX.Total Sales",
+              "nativeQueryRef": "Total Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_DAX"
+                    }
+                  },
+                  "Property": "% of Total Profit"
+                }
+              },
+              "queryRef": "_DAX.% of Total Profit",
+              "nativeQueryRef": "% of Total Profit"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_DAX"
+                  }
+                },
+                "Property": "Total Sales"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "featureInfo": [
+        {
+          "properties": {
+            "selectedLayerKeys": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "mapObject": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"portalUrl\":\"https://www.arcgis.com\",\"version\":\"2.4\",\"isAuthorNamedUser\":false,\"map\":{\"webmap\":{\"is3d\":false,\"itemData\":{\"operationalLayers\":[{\"id\":\"MyLayer\",\"visibility\":true,\"opacity\":1,\"minScale\":0,\"maxScale\":0,\"refreshInterval\":0,\"title\":\"Store Region\",\"objectIdField\":\"objectId\",\"type\":\"DataLayer\",\"layerType\":\"ArcGISFeatureLayer\",\"popupEnabled\":true,\"disablePopup\":false,\"visible\":true,\"geometryType\":\"point\",\"source\":[{\"attributes\":{},\"geometry\":{\"x\":0,\"y\":0,\"type\":\"point\",\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100}}}],\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100},\"esriMaps\":{\"isTimeEnabled\":\"false\",\"clusterInfo\":null,\"lastShareInfo\":null},\"timeInfo\":null,\"showLabels\":false,\"featureCollection\":{\"layers\":[{\"popupInfo\":{\"popupElements\":[{\"type\":\"fields\",\"fieldInfos\":[{\"fieldName\":\"dim_stores_Store_20Region\",\"isEditable\":true,\"label\":\"Store Region\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"_DAX_Total_20Sales\",\"format\":{\"digitSeparator\":true,\"places\":2},\"isEditable\":true,\"label\":\"Total Sales\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"_DAX__25_20of_20Total_20Profit\",\"format\":{\"digitSeparator\":true,\"places\":2},\"isEditable\":true,\"label\":\"% of Total Profit\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"ROW_ID\",\"format\":{\"digitSeparator\":true,\"places\":0},\"isEditable\":true,\"label\":\"ROW_ID\",\"tooltip\":\"\",\"visible\":true}]}],\"expressionInfos\":[],\"fieldInfos\":[{\"fieldName\":\"dim_stores_Store_20Region\",\"isEditable\":true,\"label\":\"Store Region\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"_DAX_Total_20Sales\",\"format\":{\"digitSeparator\":true,\"places\":2},\"isEditable\":true,\"label\":\"Total Sales\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"_DAX__25_20of_20Total_20Profit\",\"format\":{\"digitSeparator\":true,\"places\":2},\"isEditable\":true,\"label\":\"% of Total Profit\",\"tooltip\":\"\",\"visible\":true},{\"fieldName\":\"ROW_ID\",\"format\":{\"digitSeparator\":true,\"places\":0},\"isEditable\":true,\"label\":\"ROW_ID\",\"tooltip\":\"\",\"visible\":true}],\"title\":\"\",\"actions\":[]},\"effect\":null,\"layerDefinition\":{\"objectIdField\":\"objectId\",\"fields\":[{\"alias\":\"objectId\",\"editable\":false,\"name\":\"objectId\",\"nullable\":false,\"type\":\"esriFieldTypeOID\"},{\"alias\":\"Store Region\",\"editable\":true,\"length\":-1,\"name\":\"dim_stores_Store_20Region\",\"nullable\":true,\"type\":\"esriFieldTypeString\"},{\"alias\":\"Total Sales\",\"editable\":true,\"name\":\"_DAX_Total_20Sales\",\"nullable\":true,\"type\":\"esriFieldTypeDouble\"},{\"alias\":\"% of Total Profit\",\"editable\":true,\"name\":\"_DAX__25_20of_20Total_20Profit\",\"nullable\":true,\"type\":\"esriFieldTypeDouble\"},{\"alias\":\"ROW_ID\",\"editable\":true,\"name\":\"ROW_ID\",\"nullable\":true,\"type\":\"esriFieldTypeInteger\"}],\"geometryType\":\"point\",\"drawingInfo\":{\"renderer\":{\"authoringInfo\":{\"classificationMethod\":\"esriClassifyNaturalBreaks\",\"type\":\"classedSize\"},\"type\":\"classBreaks\",\"visualVariables\":[],\"classBreakInfos\":[{\"classMaxValue\":93623567.3,\"symbol\":{\"type\":\"esriSMS\",\"color\":[99,162,255,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":3,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,204],\"width\":1,\"style\":\"esriSLSSolid\"}}},{\"classMaxValue\":99729971.27,\"symbol\":{\"type\":\"esriSMS\",\"color\":[99,162,255,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":22.25,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,204],\"width\":1,\"style\":\"esriSLSSolid\"}}},{\"classMaxValue\":106120969.59,\"symbol\":{\"type\":\"esriSMS\",\"color\":[99,162,255,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":41.5,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,204],\"width\":1,\"style\":\"esriSLSSolid\"}}},{\"classMaxValue\":123583698.52,\"symbol\":{\"type\":\"esriSMS\",\"color\":[99,162,255,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":60.75,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,204],\"width\":1,\"style\":\"esriSLSSolid\"}}},{\"classMaxValue\":283033951.26,\"symbol\":{\"type\":\"esriSMS\",\"color\":[99,162,255,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":80,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,204],\"width\":1,\"style\":\"esriSLSSolid\"}}}],\"defaultLabel\":\"Other\",\"defaultSymbol\":{\"type\":\"esriSMS\",\"color\":[128,128,128,255],\"angle\":0,\"xoffset\":0,\"yoffset\":0,\"size\":3,\"style\":\"esriSMSCircle\",\"outline\":{\"type\":\"esriSLS\",\"color\":[255,255,255,64],\"width\":0.75,\"style\":\"esriSLSSolid\"}},\"field\":\"_DAX_Total_20Sales\",\"minValue\":93623567.3},\"transparency\":0},\"featureReduction\":null,\"locationProvider\":{\"type\":\"cachedgeocode\",\"sourceCountry\":\"IN\",\"targetSR\":102100,\"lookupFields\":[{\"lookupField\":\"SingleLine\",\"outField\":\"dim_stores_Store_20Region\"}],\"geocodeServiceUrl\":\"https://utility.arcgis.com/usrsvcs/appservices/L7zl5sI0W1hBHWRI/rest/services/World/GeocodeServer\"},\"minScale\":0,\"maxScale\":0,\"definitionExpression\":null,\"templates\":[{\"name\":\"New Feature\",\"description\":\"\",\"prototype\":{\"attributes\":{\"dim_stores_Store_20Region\":null,\"_DAX_Total_20Sales\":null,\"_DAX__25_20of_20Total_20Profit\":null,\"ROW_ID\":null}}}],\"elevationInfo\":null,\"name\":\"Store Region\",\"type\":\"DataLayer\",\"queryParameters\":{\"tableId\":\"\"}},\"featureSet\":{\"features\":[{\"attributes\":{},\"geometry\":{\"x\":0,\"y\":0,\"type\":\"point\",\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100}}}]}}]}}],\"tables\":[],\"baseMap\":{\"baseMapLayers\":[{\"id\":\"VectorTile_1970\",\"opacity\":1,\"title\":\"Light Gray Base\",\"visibility\":true,\"layerType\":\"VectorTileLayer\",\"styleUrl\":\"https://cdn.arcgis.com/sharing/rest/content/items/291da5eab3a0412593b66d384379f89f/resources/styles/root.json\"},{\"id\":\"VectorTile_7117\",\"opacity\":1,\"title\":\"Light Gray Reference\",\"visibility\":true,\"layerType\":\"VectorTileLayer\",\"styleUrl\":\"https://cdn.arcgis.com/sharing/rest/content/items/1768e8369a214dfab4e2167d5c5f2454/resources/styles/root.json\",\"isReference\":true}],\"title\":\"Light Gray Canvas\"},\"version\":\"2.26\",\"authoringApp\":\"ArcGIS for Power BI\",\"authoringAppVersion\":\"2026.1.970\",\"bookmarks\":[],\"initialState\":{\"viewpoint\":{\"targetGeometry\":{\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100},\"xmin\":8336010.428920379,\"ymin\":1035635.1038402538,\"xmax\":10082443.651179621,\"ymax\":3765354.2579597426}}}}},\"webmapExtensions\":{\"format\":2,\"homeViewpoint\":{\"viewpoint\":{\"rotation\":0,\"scale\":18489297.737236,\"targetGeometry\":{\"spatialReference\":{\"latestWkid\":3857,\"wkid\":102100},\"xmin\":8218603.153474381,\"ymin\":1082108.8170376301,\"xmax\":10199850.926625622,\"ymax\":3718880.5447623692}}}}},\"embedCheckPassed\":false}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "mapTools": [
+        {
+          "properties": {
+            "basemaps": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "share": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "geometryCache": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"key\":\"cachedgeocode@@in\",\"compressionMethod\":\"pako\",\"data\":\"H4sIAAAAAAAAA3XRsU7EMAwG4HfJXEW2Y8dJZxZWFkCIoToCVPRa1Aad0KnvTi4SILiepyiyPv22j2Z573LfDTfpOc1p3CXTHs3Q5bTk27f+ybQuiDbmUN8IhABrY17StE957tNi2ofSP+0KMo3XV6Y1qVuy+Wn5PHl3pg0eGDBaEoexVGjMfcGdI+VomdTX33Vt/nHTOPRjOgejd9ETWlHw1aLoWVAtRgrVcufYOM35dSOcBIXgrHryUAq/w0UStU4YL4Rbpo9NzzOqcMkW8eRR9ZA9qiMLoHIp4C6Nee6GjXGDkzKf9WVVvyRJAGC2Ksg1+AZ5SJv3kEABgmWn7u89CmiVQx05Fu9x/QKfebVRJQIAAA==\"}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "mapControls": [
+        {
+          "properties": {
+            "zoomTools": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "lockMapExtent": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showHome": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "homeSetting": {
+              "expr": {
+                "Literal": {
+                  "Value": "'home1'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sales Distribution'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "verticalSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

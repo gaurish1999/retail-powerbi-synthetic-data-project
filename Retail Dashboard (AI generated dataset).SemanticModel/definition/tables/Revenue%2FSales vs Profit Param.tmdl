@@ -1,0 +1,48 @@
+table 'Revenue/Sales vs Profit Param'
+	lineageTag: 26ba15b1-5e5e-45b0-b500-9650eced7610
+
+	column 'Revenue/Sales vs Profit Param'
+		lineageTag: ca135957-15ac-45a2-a615-527291e9412b
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Revenue/Sales vs Profit Param Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Revenue/Sales vs Profit Param Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Revenue/Sales vs Profit Param Fields'
+		isHidden
+		lineageTag: 511c6a6e-048f-4872-9bf1-6e7981a719fb
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Revenue/Sales vs Profit Param Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Revenue/Sales vs Profit Param Order'
+		isHidden
+		formatString: 0
+		lineageTag: 58d5ee66-a88d-4fe1-b3df-fba45be85a5f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Revenue/Sales vs Profit Param' = calculated
+		mode: import
+		source =
+				{
+				    ("Total Sales vs. Profit Trending", NAMEOF('_DAX'[Total Sales]), 0),
+				    ("Total Product Revenue vs. Profit Trending", NAMEOF('_DAX'[Total Product Revenue]), 1)
+				}
+
+	annotation PBI_Id = 55a7b2247fa547aab23d228b4c067d97
+

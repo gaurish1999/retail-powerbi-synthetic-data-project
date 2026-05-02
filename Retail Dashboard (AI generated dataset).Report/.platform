@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Retail Dashboard (AI generated dataset)"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "576590e3-14b1-4528-a6de-dc51877c5bcb"
+  }
+}

@@ -1,0 +1,130 @@
+table Dim_Store
+	lineageTag: 1529983d-f9ca-4845-bbdd-226cd614367f
+
+	column 'Store ID'
+		dataType: string
+		isHidden
+		lineageTag: 28824b27-89bf-4e65-bada-4704f1073d83
+		summarizeBy: none
+		sourceColumn: Store ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Name'
+		dataType: string
+		lineageTag: d4d823c8-4a3c-45b2-9222-3a0dea855722
+		summarizeBy: none
+		sourceColumn: Store Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Region'
+		dataType: string
+		lineageTag: a25d8e84-adf6-48f0-ae5a-a1dafc1744d2
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Store Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store City'
+		dataType: string
+		lineageTag: cd3e57c6-c190-4910-917a-fd952407770c
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: Store City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store State'
+		dataType: string
+		lineageTag: 456f2ee2-2462-40bc-bd0d-8353c3caf37a
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: Store State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Type'
+		dataType: string
+		lineageTag: 09f97197-c0bd-4d4a-b411-86da2250c687
+		summarizeBy: none
+		sourceColumn: Store Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opening Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 170f4d9a-d3cc-442e-a648-0fe698a87d13
+		summarizeBy: none
+		sourceColumn: Opening Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	hierarchy 'Store Region Hierarchy'
+		lineageTag: d981d6c6-fc98-41d9-8fc0-91108e77368f
+
+		level 'Store Region'
+			lineageTag: debb47ea-5f41-4ab8-966b-b1add166c869
+			column: 'Store Region'
+
+		level 'Store State'
+			lineageTag: 06ded9ea-49f2-4b5d-8b9b-3f6c31ef438b
+			column: 'Store State'
+
+		level 'Store City'
+			lineageTag: 578cfa2e-c695-403f-bb54-461c29de3be1
+			column: 'Store City'
+
+	partition Dim_Store = m
+		mode: import
+		source = ```
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ryu10\OneDrive\Udemy\Power BI\Independent Projects for Portfolio\Datasets\AI generated retail_dataset_500k\dim_stores.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				
+				    #"Change Type" = Table.TransformColumnTypes(#"Promoted Headers",{
+				            {"store_id", type text}, 
+				            {"store_name", type text}, 
+				            {"region", type text}, 
+				            {"city", type text}, 
+				            {"state", type text}, 
+				            {"store_type", type text}, 
+				            {"opening_date", type date}
+				        }),
+				
+				    #"Rename Columns" = Table.RenameColumns(#"Change Type",{
+				            {"store_id", "Store ID"}, 
+				            {"store_name", "Store Name"}, 
+				            {"region", "Store Region"}, 
+				            {"city", "Store City"}, 
+				            {"state", "Store State"}, 
+				            {"store_type", "Store Type"}, 
+				            {"opening_date", "Opening Date"}
+				        }),
+				
+				    #"Insert Custom Value" = Table.InsertRows(#"Rename Columns", 0, {[
+				    Store ID = "ONLINE", 
+				    Store Name = "Online", 
+				    Store Region = "Online", 
+				    Store City = "Online", 
+				    Store State = "Online", 
+				    Store Type = "Online", 
+				    Opening Date = List.Min(Dim_Date[Date])
+				]})
+				in
+				    #"Insert Custom Value"
+				```
+
+	changedProperty = Name
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

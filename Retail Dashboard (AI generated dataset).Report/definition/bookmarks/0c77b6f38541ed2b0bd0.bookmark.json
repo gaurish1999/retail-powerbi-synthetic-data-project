@@ -1,0 +1,1273 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Key Influencers Bookmark",
+  "name": "0c77b6f38541ed2b0bd0",
+  "options": {
+    "targetVisualNames": []
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "781975d933c252dbfa33",
+    "filters": {
+      "byExpr": [
+        {
+          "name": "a8def45f3f600f1c84b6",
+          "type": "Categorical",
+          "filter": {
+            "Version": 2,
+            "From": [
+              {
+                "Name": "d",
+                "Entity": "Dim_Date",
+                "Type": 0
+              }
+            ],
+            "Where": [
+              {
+                "Condition": {
+                  "In": {
+                    "Expressions": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "d"
+                            }
+                          },
+                          "Property": "Year"
+                        }
+                      }
+                    ],
+                    "Values": [
+                      [
+                        {
+                          "Literal": {
+                            "Value": "'2022'"
+                          }
+                        }
+                      ],
+                      [
+                        {
+                          "Literal": {
+                            "Value": "'2023'"
+                          }
+                        }
+                      ],
+                      [
+                        {
+                          "Literal": {
+                            "Value": "'2024'"
+                          }
+                        }
+                      ]
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "expression": {
+            "HierarchyLevel": {
+              "Expression": {
+                "Hierarchy": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Date"
+                    }
+                  },
+                  "Hierarchy": "Date Hierarchy"
+                }
+              },
+              "Level": "Year"
+            }
+          },
+          "howCreated": 1,
+          "cachedDisplayNames": [
+            {
+              "id": {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_Date"
+                          }
+                        },
+                        "Property": "Year"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2022'"
+                      }
+                    }
+                  }
+                }
+              },
+              "displayName": "2022"
+            },
+            {
+              "id": {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_Date"
+                          }
+                        },
+                        "Property": "Year"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2023'"
+                      }
+                    }
+                  }
+                }
+              },
+              "displayName": "2023"
+            },
+            {
+              "id": {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Dim_Date"
+                          }
+                        },
+                        "Property": "Year"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'2024'"
+                      }
+                    }
+                  }
+                }
+              },
+              "displayName": "2024"
+            }
+          ]
+        }
+      ]
+    },
+    "sections": {
+      "781975d933c252dbfa33": {
+        "visualContainers": {
+          "ff6fbc7d9b3f4a37ffeb": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "06168e9d719909885e4b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Product Name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c4b20e07314ab5326c98",
+                  "type": "Categorical",
+                  "expression": {
+                    "GroupRef": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Product Name (clusters)",
+                      "GroupedColumns": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "Dim_Product"
+                              }
+                            },
+                            "Property": "Product Name"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0673ede3d7b9a8410b4e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Fact_Sales"
+                            }
+                          },
+                          "Property": "Discount %"
+                        }
+                      },
+                      "Function": 1
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6c7866f83b8054b79a0e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_DAX"
+                        }
+                      },
+                      "Property": "% of Total Profit"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "scatterChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Product Name"
+                    }
+                  }
+                ],
+                "X": [
+                  {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Fact_Sales"
+                            }
+                          },
+                          "Property": "Discount %"
+                        }
+                      },
+                      "Function": 1
+                    }
+                  }
+                ]
+              },
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "fb18056568bedf8d7c36": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "7c3b02030e7eb343306b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Brand"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "339450492e8a600051c1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Category"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "26c34c7d59a382ff7550",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Sub-Category"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "960e9bf89d3fbf280ded",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Color"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "cc42ae43df7e11863ec7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Product Name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ca6d5e03b0029900aa69",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Store"
+                        }
+                      },
+                      "Property": "Store Region"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5ef931484b83d466dd8c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Store"
+                        }
+                      },
+                      "Property": "Store Type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7474324eb8109dd8abab",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact_Sales"
+                        }
+                      },
+                      "Property": "Returned?"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8e19f634552bf830aa54",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Date"
+                        }
+                      },
+                      "Property": "Is Weekend?"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "keyDriversVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_DAX"
+                        }
+                      },
+                      "Property": "Total Sales"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "ac480f649e0840e93509": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2c301d798a3b5c8da315",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_DAX"
+                        }
+                      },
+                      "Property": "Total Sales"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "29b008a060872bca5180",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Customer"
+                        }
+                      },
+                      "Property": "Loyalty Tier"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d78e9d1e5e2588d65f11",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Date"
+                        }
+                      },
+                      "Property": "Is Weekend?"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2eda1222ce1b83f0d335",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Category"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "cd74ce900e0b41339b73",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Brand"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "653d8831ea69936332ca",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Sub-Category"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "89caa5d672cefca22b11",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Store"
+                        }
+                      },
+                      "Property": "Store Name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "46aeae36bd357f45c671",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Store"
+                        }
+                      },
+                      "Property": "Store Type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "74fdd0957bcd042641d7",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Store"
+                            }
+                          },
+                          "Hierarchy": "Store Region Hierarchy"
+                        }
+                      },
+                      "Level": "Store Region"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "26e36873e675842414db",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Store"
+                            }
+                          },
+                          "Hierarchy": "Store Region Hierarchy"
+                        }
+                      },
+                      "Level": "Store State"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7927f47b98ee8d5af86a",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Store"
+                            }
+                          },
+                          "Hierarchy": "Store Region Hierarchy"
+                        }
+                      },
+                      "Level": "Store City"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "dcf4d07303030d455c20",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact_Sales"
+                        }
+                      },
+                      "Property": "Payment Type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0d8b5c4bf6ecb85610fd",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact_Sales"
+                        }
+                      },
+                      "Property": "Sales Channel"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f27cbb4d64373df96d7f",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Date"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "Year"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2dde717c1151184920fe",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Date"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "Qtr"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ee8900127e7a92ee83fe",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Date"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "Month Name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8cd8c7855bb911aa48ad",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Customer"
+                            }
+                          },
+                          "Hierarchy": "Customer Address Hierarchy"
+                        }
+                      },
+                      "Level": "Customer State"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a5844f620db4d6984f33",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Customer"
+                            }
+                          },
+                          "Hierarchy": "Customer Address Hierarchy"
+                        }
+                      },
+                      "Level": "Customer City"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "980a01a303f196f2ca24",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Customer"
+                            }
+                          },
+                          "Hierarchy": "Customer Address Hierarchy"
+                        }
+                      },
+                      "Level": "Pincode"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "decompositionTreeVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_DAX"
+                        }
+                      },
+                      "Property": "Total Sales"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "ExplainBy": [
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Store"
+                            }
+                          },
+                          "Hierarchy": "Store Region Hierarchy"
+                        }
+                      },
+                      "Level": "Store Region"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Product"
+                        }
+                      },
+                      "Property": "Brand"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Customer"
+                        }
+                      },
+                      "Property": "Loyalty Tier"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact_Sales"
+                        }
+                      },
+                      "Property": "Payment Type"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Date"
+                        }
+                      },
+                      "Property": "Is Weekend?"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Store"
+                        }
+                      },
+                      "Property": "Store Name"
+                    }
+                  },
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Store"
+                            }
+                          },
+                          "Hierarchy": "Store Region Hierarchy"
+                        }
+                      },
+                      "Level": "Store State"
+                    }
+                  },
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Dim_Customer"
+                            }
+                          },
+                          "Hierarchy": "Customer Address Hierarchy"
+                        }
+                      },
+                      "Level": "Pincode"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "ExplainBy"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "dim_stores.Store Region Hierarchy.Store Region"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "dim_stores"
+                              }
+                            },
+                            "Property": "Store Region"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_products.Brand"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "dim_products"
+                              }
+                            },
+                            "Property": "Brand"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_customers.Loyalty Tier"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "dim_customers"
+                              }
+                            },
+                            "Property": "Loyalty Tier"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "sales_fact.Payment Type"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "sales_fact"
+                              }
+                            },
+                            "Property": "Payment Type"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_date.Is Weekend?"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "dim_date"
+                              }
+                            },
+                            "Property": "Is Weekend?"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_stores.Store Name"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "dim_stores"
+                              }
+                            },
+                            "Property": "Store Name"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_stores.Store Region Hierarchy.Store State"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "dim_stores"
+                              }
+                            },
+                            "Property": "Store State"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_customers.Customer Address Hierarchy.Pincode"
+                      ],
+                      "isCollapsed": true,
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_products.Category"
+                      ],
+                      "isCollapsed": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_products.Sub-Category"
+                      ],
+                      "isCollapsed": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_stores.Store Type"
+                      ],
+                      "isCollapsed": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_stores.Store Region Hierarchy.Store City"
+                      ],
+                      "isCollapsed": true
+                    },
+                    {
+                      "queryRefs": [
+                        "sales_fact.Sales Channel"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "sales_fact"
+                              }
+                            },
+                            "Property": "Sales Channel"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_customers.Customer Address Hierarchy.Customer State"
+                      ],
+                      "isCollapsed": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_customers.Customer Address Hierarchy.Customer City"
+                      ],
+                      "isCollapsed": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_date.Date Hierarchy.Month Name"
+                      ],
+                      "isCollapsed": true
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_date.Date Hierarchy.Year"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "dim_date"
+                              }
+                            },
+                            "Property": "Year"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "queryRefs": [
+                        "dim_date.Date Hierarchy.Qtr"
+                      ],
+                      "isCollapsed": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": null,
+                    "children": [
+                      {
+                        "identityValues": [
+                          {
+                            "Literal": {
+                              "Value": "'West'"
+                            }
+                          }
+                        ],
+                        "isToggled": true,
+                        "children": [
+                          {
+                            "identityValues": [
+                              {
+                                "Literal": {
+                                  "Value": "'Sportify'"
+                                }
+                              }
+                            ],
+                            "isToggled": true,
+                            "children": [
+                              {
+                                "identityValues": [
+                                  {
+                                    "Literal": {
+                                      "Value": "'Silver'"
+                                    }
+                                  }
+                                ],
+                                "isToggled": true,
+                                "children": [
+                                  {
+                                    "identityValues": [
+                                      {
+                                        "Literal": {
+                                          "Value": "'UPI'"
+                                        }
+                                      }
+                                    ],
+                                    "isToggled": true,
+                                    "children": [
+                                      {
+                                        "identityValues": [
+                                          {
+                                            "Literal": {
+                                              "Value": "'Yes'"
+                                            }
+                                          }
+                                        ],
+                                        "isToggled": true,
+                                        "children": [
+                                          {
+                                            "identityValues": [
+                                              {
+                                                "Literal": {
+                                                  "Value": "'RetailHub 98'"
+                                                }
+                                              }
+                                            ],
+                                            "isToggled": true,
+                                            "children": [
+                                              {
+                                                "identityValues": [
+                                                  {
+                                                    "Literal": {
+                                                      "Value": "'PN'"
+                                                    }
+                                                  }
+                                                ],
+                                                "isToggled": true
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "cc5ce3916e54fb7ac97b": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "1c3cb5a9ac706def64bb": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "891b6601c1ac51b90778": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "38493e904ecd5057dbe6": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "532a37e1715161b127ac": {
+            "isHidden": true
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

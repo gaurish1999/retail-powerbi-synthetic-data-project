@@ -1,0 +1,25 @@
+relationship AutoDetected_99155536-c0f7-430a-99d9-2404d4d9297c
+	fromColumn: Fact_Sales.'Customer ID'
+	toColumn: Dim_Customer.'Customer ID'
+
+relationship AutoDetected_44c080a9-ac69-44e6-ad19-81df210f2bab
+	fromColumn: Fact_Sales.'Product ID'
+	toColumn: Dim_Product.'Product ID'
+
+relationship 53fb09b5-e21c-4b64-7ec5-881ea44b7ac3
+	fromColumn: Fact_Sales.'Store ID'
+	toColumn: Dim_Store.'Store ID'
+
+relationship 12476c7a-924c-dd88-02be-cbc236fbbf98
+	fromColumn: Fact_Sales.'Delivery Date'
+	toColumn: Dim_Date.Date
+
+relationship 1d0c3984-a4fe-b818-3c31-d1edc8da7575
+	isActive: false
+	fromColumn: Fact_Sales.'Order Date'
+	toColumn: Dim_Date.Date
+
+relationship AutoDetected_c35609f0-c896-4fb7-b0cb-d1cb88737801
+	fromColumn: Dim_Store.'Store City'
+	toColumn: 'City - State Lookup Table'.'Store City'
+

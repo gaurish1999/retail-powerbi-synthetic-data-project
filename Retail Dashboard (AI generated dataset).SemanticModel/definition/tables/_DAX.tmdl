@@ -1,0 +1,276 @@
+table _DAX
+	lineageTag: e8aaafd1-953b-4e89-b4d7-f175951cee8f
+
+	measure 'Total Sales' = SUM(Fact_Sales[Total Amount])
+		formatString: "₹"\ #,0.00;#,0.00\ -"₹";"₹"\ #,0.00
+		lineageTag: 3dd5443c-e89b-435a-beaa-3b5693c5aeed
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure 'Total Orders' = SUM(Fact_Sales[Quantity])
+		formatString: #,0
+		lineageTag: 114dae81-2a14-4f57-915d-7fd3aac22113
+
+	measure 'Total Unit Price' = SUM(Fact_Sales[Unit Price])
+		formatString: "₹"\ #,0.00;#,0.00\ -"₹";"₹"\ #,0.00
+		lineageTag: e59c173a-2597-4cb4-962e-229cb77df942
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure 'Total Tax' = SUM(Fact_Sales[Tax])
+		formatString: "₹"\ #,0.00;#,0.00\ -"₹";"₹"\ #,0.00
+		lineageTag: d8668a2c-958b-47ff-ac60-c4d9ea34dff3
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure 'Total Shipping Cost' = SUM(Fact_Sales[Shipping Cost])
+		formatString: "₹"\ #,0.00;#,0.00\ -"₹";"₹"\ #,0.00
+		lineageTag: ef14b80f-2027-43da-8c69-63530b54feac
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure 'Total Product CP' = SUM(Dim_Product[Unit Cost Price])
+		formatString: "₹"\ #,0.00;#,0.00\ -"₹";"₹"\ #,0.00
+		lineageTag: 94945bef-02a3-44e5-bfda-8fe0442c370e
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure 'Total Product SP' = SUM(Dim_Product[Unit Selling Price])
+		formatString: "₹"\ #,0.00;#,0.00\ -"₹";"₹"\ #,0.00
+		lineageTag: b5c23c8c-4cde-428d-89a5-fffe8be456a0
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure 'Total Product Revenue' =
+			
+			SUMX(
+			    Fact_Sales,
+			    Fact_Sales[Quantity] * Fact_Sales[Total Amount]
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 80c7872c-5e26-4448-90ec-04c62ef6790e
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Sale % All Cities' = ```
+			
+			DIVIDE(
+			    [Total Sales], 
+			    CALCULATE(
+			        [Total Sales], 
+			        ALLSELECTED(Dim_Store[Store City])
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 04a34f76-94af-4c30-98f2-34799d296408
+
+	measure 'Revenue YoY%' =
+			
+			VAR RevenuePriorYear = CALCULATE(
+			    [Total Product Revenue],
+			    SAMEPERIODLASTYEAR(Dim_Date[Date])
+			)
+			
+			RETURN
+			DIVIDE(
+			    [Total Product Revenue] - RevenuePriorYear,
+			    RevenuePriorYear
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: decc3290-ae0e-44ce-880a-60052868b3a8
+
+	measure 'YoY Growth' = ```
+			
+			VAR SalePriorYear = CALCULATE(
+			    [Total Sales], 
+			    PARALLELPERIOD(
+			    Dim_Date[Date],
+			    -12,
+			    MONTH
+			    )
+			)
+			VAR SalesVariance = DIVIDE(([Total Sales] - SalePriorYear), SalePriorYear)
+			
+			RETURN SalesVariance
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4f3ce889-fa38-4ece-92f9-1d34b1e4d62c
+
+	measure 'Total Returns' = COUNT(Fact_Sales[Returned?])
+		formatString: #,0
+		lineageTag: 33121d28-7352-467f-bc3d-5dae2ec84b58
+
+	measure 'Count of Returned (Yes)' =
+			CALCULATE(
+			    COUNT(Fact_Sales[Returned?]),
+			    Fact_Sales[Returned?] = "Yes"
+			)
+		formatString: #,0
+		lineageTag: 7a0d8766-20d1-4e1f-9159-b8bcb3e23c3e
+
+	measure 'Count of Returned (No)' =
+			CALCULATE(
+			    COUNT(Fact_Sales[Returned?]),
+			    Fact_Sales[Returned?] = "No"
+			)
+		formatString: #,0
+		lineageTag: 6230795e-7b7a-49cc-9a10-4f0a125410cf
+
+	measure '% of Total Profit' =
+			
+			VAR CurrentProfit = [Total Profit]
+			
+			VAR OverallProfit = CALCULATE(
+			    [Total Profit],
+			    ALL(Fact_Sales)
+			)
+			
+			RETURN DIVIDE(
+			    CurrentProfit,
+			    OverallProfit,
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ba29dc9f-1128-4c22-a019-776f1b3a9a7f
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Dim_Product","TableItemName":"Product Name (clusters)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	measure '% of Total Sales by Customer' =
+			
+			VAR CurrentCustomerSales = [Total Sales]
+			
+			VAR OverallCustomerSales = CALCULATE(
+			    [Total Sales],
+			    ALL(Fact_Sales)
+			)
+			
+			RETURN DIVIDE(
+			    CurrentCustomerSales,
+			    OverallCustomerSales,
+			    0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a2e7af9d-42af-43a7-ad50-bf08cd8e0097
+
+	measure 'Total Profit' = [Total Sales] - [Total Unit Price]
+		formatString: "₹"\ #,0.00;#,0.00\ -"₹";"₹"\ #,0.00
+		lineageTag: d979e372-545e-4870-8ece-8fbc483d8c6d
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure 'Return to Order Ratio (%)' =
+			DIVIDE(
+			    [Total Returns],
+			    [Total Orders],
+			    "NA"
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e919aca0-d5b9-4065-9a59-252bbc5f8f53
+
+	measure 'Total Weekend Sales' =
+			CALCULATE(
+			    [Total Sales],
+			    Dim_Date[Is Weekend?] = "Yes"
+			)
+		formatString: "₹"\ #,0.00;#,0.00\ -"₹";"₹"\ #,0.00
+		lineageTag: d575c065-f84a-47e8-92a9-45fb5782d7ee
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure 'Total Weekday Sales' =
+			CALCULATE(
+			    [Total Sales],
+			    Dim_Date[Is Weekend?] = "No"
+			)
+		formatString: "₹"\ #,0.00;#,0.00\ -"₹";"₹"\ #,0.00
+		lineageTag: c214a61a-e545-41a9-b9af-5415fab7ccaf
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-IN"}
+
+	measure 'Total Margin' = [Total Product SP] - [Total Product CP]
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d1628892-0fc3-40ff-aa19-6b400d150a29
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Margin % age' =
+			DIVIDE(
+			    [Total Profit],
+			    [Total Sales],
+			    "--"
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: da86b26c-c518-4473-aace-198f3cc1e879
+
+	measure 'Dynamic Average Value' =
+			
+			SWITCH(
+			    TRUE(),
+			    ISINSCOPE(Dim_Date[Month Name]), AVERAGE(Fact_Sales[Total Amount]),   // or your existing measure
+			    ISINSCOPE(Dim_Date[Qtr]), AVERAGE(Fact_Sales[Total Amount]),
+			    ISINSCOPE(Dim_Date[Year]), AVERAGE(Fact_Sales[Total Amount]),
+			    AVERAGE(Fact_Sales[Total Amount])  // Overall / top level
+			)
+		lineageTag: 205ccf33-1bcf-4b96-a94b-1d8c91c1173f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Current Drill Level' =
+			
+			SWITCH(
+			    TRUE(),
+			    ISINSCOPE(Dim_Date[Month Name]),   "Month",
+			    ISINSCOPE(Dim_Date[Qtr]), "Quarter",
+			    ISINSCOPE(Dim_Date[Year]),    "Year",
+			    "Overall"
+			)
+		lineageTag: a727bf6b-dd9b-4c53-8ab4-1ed0b27612d6
+
+	measure 'Profit YoY %' =
+			
+			VAR ProfitPriorYear = CALCULATE(
+			    [Total Profit],
+			    SAMEPERIODLASTYEAR(Dim_Date[Date])
+			)
+			
+			RETURN
+			DIVIDE(
+			    [Total Profit] - ProfitPriorYear,
+			    ProfitPriorYear
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6d446f31-9c51-48e7-82e9-8ecfc6075847
+
+	measure 'Sales YoY %' =
+			
+			VAR SalesPriorYear = CALCULATE(
+			    [Total Sales],
+			    SAMEPERIODLASTYEAR(Dim_Date[Date])
+			)
+			
+			RETURN
+			DIVIDE(
+			    [Total Sales] - SalesPriorYear,
+			    SalesPriorYear
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 57081e67-fd0c-4152-8466-890b18c5e2da
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 17798571-3be2-438f-8117-8bf0e9f90e4b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _DAX = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = ad568eea7aa04bf78a3ebb10e34c047c
+
+	annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Dim_Product","TableItemName":"Product Name (clusters)","ObjectType":4},"LinkType":"UsedInGroup"}]
+

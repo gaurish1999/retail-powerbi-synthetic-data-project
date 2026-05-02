@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Dim_Customer","Dim_Date","Dim_Product","Dim_Store","Fact_Sales","Missing Customer IDs for Audit","City - State Lookup Table"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Dim_Customer
+ref table Dim_Date
+ref table Dim_Product
+ref table Dim_Store
+ref table Fact_Sales
+ref table _DAX
+ref table 'City - State Lookup Table'
+ref table ClusterMappingTable
+ref table 'Profit Field Param'
+ref table 'Revenue/Sales vs Profit Param'
+
+ref cultureInfo en-US
+
